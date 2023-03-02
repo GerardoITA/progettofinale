@@ -20,7 +20,7 @@ return new class extends Migration
             $table->    timestamps();
         });
 
-        $data = [
+        $sponsorships = [
             [
                 'name' => 'Basic',
                 'price' => '2.99',
@@ -38,14 +38,15 @@ return new class extends Migration
             ],
         ];
 
-        foreach($data as $element){
-            $sponsorship = new Sponsorship();
+        // create new sponsorships from array(sponsorships)
+        foreach($sponsorships as $sponsorship){
+            $newSponsorship = new Sponsorship();
             
-            $sponsorship -> name = $element['name'];
-            $sponsorship -> price = $element['price'];
-            $sponsorship -> duration = $element['duration'];
+            $newSponsorship -> name = $sponsorship['name'];
+            $newSponsorship -> price = $sponsorship['price'];
+            $newSponsorship -> duration = $sponsorship['duration'];
 
-            $sponsorship -> save();
+            $newSponsorship -> save();
             
         }
     }
