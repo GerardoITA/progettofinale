@@ -10,7 +10,9 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {   
+
+        //VIEWS FOREIGN
         Schema::table('views', function (Blueprint $table) {
             $table -> foreignId('apartment_id')
                    -> constrained(); 
@@ -22,6 +24,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        //VIEWS FOREIGN
+        Schema::table('views', function (Blueprint $table) {
+            $table -> dropfreign('views_apartment_id_foreign'); 
+        });
     }
 };
