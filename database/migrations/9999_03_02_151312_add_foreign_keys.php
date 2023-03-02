@@ -24,6 +24,11 @@ return new class extends Migration
             -> constrained();
         });
 
+        //IMAGES FOREIGN
+        Schema::table('images', function (Blueprint $table) {
+            $table -> foreignId('apartment_id')
+            -> constrained();
+        });
           
     }
 
@@ -42,5 +47,11 @@ return new class extends Migration
             $table -> dropForeign('messages_apartment_id_foreign'); 
 
         });
+
+        //IMAGES FOREIGN
+        Schema::table('images', function (Blueprint $table) {
+            $table -> dropForeign('images_apartment_id_foreign'); 
+
+        });        
     }
 };
