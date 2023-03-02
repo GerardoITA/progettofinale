@@ -29,6 +29,12 @@ return new class extends Migration
             $table -> foreignId('apartment_id')
             -> constrained();
         });
+
+        //USERS FOREIGN
+        Schema::table('apartments', function (Blueprint $table) {
+            $table -> foreignId('user_id')
+            -> constrained();
+        });
           
     }
 
@@ -52,6 +58,12 @@ return new class extends Migration
         Schema::table('images', function (Blueprint $table) {
             $table -> dropForeign('images_apartment_id_foreign'); 
 
-        });        
+        });       
+        
+        //USERS FOREIGN
+        Schema::table('apartments', function (Blueprint $table) {
+            $table -> dropForeign('apartments_user_id_foreign'); 
+
+        });     
     }
 };
