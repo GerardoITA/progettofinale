@@ -40,7 +40,7 @@ return new class extends Migration
             'Asciugacapelli',            
             'Frigorifero',            
             'Lavatrice',            
-            'Asciugatrice',        
+            'Asciugatrice',
         ];
 
         // create new service from array(services)
