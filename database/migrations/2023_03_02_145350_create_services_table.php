@@ -18,80 +18,36 @@ return new class extends Migration
             $table->    timestamps();
         });
 
-        $services= [
-            [
-                'name' => 'Wi-Fi'
-            ],
-            [
-                'name' => 'Parcheggio gratuito'
-            ],
-            [
-                'name' => 'Piscina'
-            ],
-            [
-                'name' => 'Giardino'
-            ],
-            [
-                'name' => 'Terrazza'
-            ],
-            [
-                'name' => 'Colazione'
-            ],
-            [
-                'name' => 'Servizi spa'
-            ],
-            [
-                'name' => 'Solarium'
-            ],
-            [
-                'name' => 'Palestra'
-            ],
-            [
-                'name' => 'Caminetto'
-            ],
-            [
-                'name' => 'Servizi di pulizia'
-            ],
-            [
-                'name' => 'Riscaldamento'
-            ],
-            [
-                'name' => 'Aria condizionata'
-            ],
-            [
-                'name' => 'Cassaforte'
-            ],
-            [
-                'name' => 'Cucina'
-            ],
-            [
-                'name' => 'Divano letto'
-            ],
-            [
-                'name' => 'Tv'
-            ],
-            [
-                'name' => 'Vasca idromassaggio'
-            ],
-            [
-                'name' => 'Asciugacapelli'
-            ],
-            [
-                'name' => 'Frigorifero'
-            ],
-            [
-                'name' => 'Lavatrice'
-            ],
-            [
-                'name' => 'Asciugatrice'
-            ],
+        $services= [            
+            'Wi-Fi',            
+            'Parcheggio gratuito',            
+            'Piscina',            
+            'Giardino',            
+            'Terrazza',            
+            'Colazione',            
+            'Servizi spa',            
+            'Solarium',            
+            'Palestra',            
+            'Caminetto',            
+            'Servizi di pulizia',            
+            'Riscaldamento',            
+            'Aria condizionata',            
+            'Cassaforte',            
+            'Cucina',            
+            'Divano letto',            
+            'Tv',            
+            'Vasca idromassaggio',            
+            'Asciugacapelli',            
+            'Frigorifero',            
+            'Lavatrice',            
+            'Asciugatrice',        
         ];
 
         // create new service from array(services)
         foreach($services as $service){
             $newService = new Service();
 
-            $newService -> name = $service['name'];
+            $newService -> name = $service;
 
             $newService -> save();
         };
