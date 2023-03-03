@@ -53,4 +53,14 @@ class Apartment extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+
+    // SPONSORSHIP
+    public function sponsorships(){
+        return $this -> belongsToMany(Sponsorship::class) -> withPivot('end_date') -> withTimestamps();
+    }
+
+    // SERVICE
+    public function services(){
+        return $this -> belongsToMany(Service::class) -> withTimestamps();;
+    }
 }

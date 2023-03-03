@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
 
             UserSeeder :: class,
 
-
+            ServiceSeeder::class,
             ApatmentSeeder::class,
             ViewSeeder::class,
             MessageSeeder::class,
             ImageSeeder::class,
+            // SponsorshipSeeder::class,
         ]);
     }
 }
