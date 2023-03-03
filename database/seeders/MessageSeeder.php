@@ -3,20 +3,19 @@
 namespace Database\Seeders;
 
 use App\Models\Apartment;
-use App\Models\View;
+use App\Models\Message;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ViewSeeder extends Seeder
+class MessageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        View::factory() -> count(1000) -> make() -> each(function($a){
-
-            $apartment = Apartment::inRandomOrder()-> first();
+        Message::factory() -> count(40) -> make() -> each(function($a){
+            $apartment = Apartment::inRandomOrder() -> first();
             $a -> apartment() -> associate($apartment);
             $a -> save();
         });

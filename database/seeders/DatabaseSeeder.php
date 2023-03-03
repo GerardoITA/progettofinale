@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
 
             ApatmentSeeder::class,
             ViewSeeder::class,
+            MessageSeeder::class,
         ]);
     }
 }
