@@ -10,7 +10,7 @@ use DateTime;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ApatmentSeeder extends Seeder
+class ApartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.

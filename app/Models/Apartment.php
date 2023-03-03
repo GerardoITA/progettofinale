@@ -48,11 +48,6 @@ class Apartment extends Model
         return $this->hasMany(Image::class);
     }
 
-    // SERVICE many to many
-    public function services()
-    {
-        return $this->belongsToMany(Service::class);
-    }
 
     // SPONSORSHIP
     public function sponsorships(){

@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder :: class,
 
             ServiceSeeder::class,
-            ApatmentSeeder::class,
+            ApartmentSeeder::class,
             ViewSeeder::class,
             MessageSeeder::class,
             ImageSeeder::class,
