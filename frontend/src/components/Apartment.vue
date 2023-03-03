@@ -6,6 +6,7 @@ export default {
     props: {
         nome: String,
         id: Number,
+        immagine: String,
 
     },
     data() {
@@ -21,6 +22,7 @@ export default {
         <div class="apartment_info">
             <h4> nome = {{ nome }} </h4>
             <h4> id = {{ id }} </h4>    
+            <img src="../assets/no-img.jpg" :alt="nome">
         </div>
         
     </div>
@@ -42,7 +44,10 @@ export default {
     .apartment_info {
         width: 80%;
         background-color: antiquewhite;
-
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
  }
 </style>

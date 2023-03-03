@@ -2,20 +2,9 @@ import { reactive } from 'vue';
 
 export const store = reactive({
 
-    AllApartmentsAPI: "",
+    AllApartmentsAPI: "http://127.0.0.1:8000/api/v1/apartments",
     ApartmentList: [
-        {
-            title: "Hello",
-            id: "1",
-        },
-        {
-            title: "Hi",
-            id: "3",
-        },
-        {
-            title: "Ciao",
-            id: "5",
-        }
+       
 
     ],
 

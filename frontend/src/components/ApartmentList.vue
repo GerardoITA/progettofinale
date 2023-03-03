@@ -14,11 +14,11 @@ export default {
       }
     },
     mounted() {
-//       axios.get(store.AllApartmentsAPI)
-//         .then(res => {
-//             store.ApartmentList = res.data.response;
-// 
-//         });
+       axios.get(store.AllApartmentsAPI)
+         .then(res => {
+             store.ApartmentList = res.data.response.apartments;
+ 
+         });
   }
 }
 </script>
@@ -28,7 +28,7 @@ ApartmentList
 
   <div class="contenitore">
     <router-link class="routerLink" :to="'/create'" v-for="apartment in store.ApartmentList" :key="apartment.id">
-        <Apartment :nome="apartment.title" :id="apartment.id">
+        <Apartment :nome="apartment.title" :id="apartment.id" :immagine="apartment.main_image">
         </Apartment>
     </router-link>
   </div>
