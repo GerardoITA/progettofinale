@@ -14,4 +14,9 @@ class Sponsorship extends Model
         'price',
         'duration'
     ];
+
+    // MANY-TO-MANY APARTMENT
+    public function apartments(){
+        return $this -> belongsToMany(Apartment::class);
+    }
 }
