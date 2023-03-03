@@ -15,8 +15,8 @@ export default {
 </script>
 <template>
 hello world
-<router-link :to="'/home2'">
-  Home 2
+<router-link :to="'/create'">
+  Create
 </router-link>
 </template>
 <style lang="scss" scoped>

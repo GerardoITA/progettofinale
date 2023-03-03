@@ -14,7 +14,7 @@ export default {
 }  
 </script>
 <template>
-hello world222 AAAAAAAAAA
+This is for creating things
   <router-link :to="'/'">
     Home
   </router-link>
