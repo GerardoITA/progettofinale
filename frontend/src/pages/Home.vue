@@ -1,8 +1,9 @@
 <script>
-
+import ApartmentList from '../components/ApartmentList.vue';
 export default {
   name: "App",
   components: {
+    ApartmentList
   },
   data() {
     return {
@@ -14,10 +15,9 @@ export default {
 }  
 </script>
 <template>
-hello world
-<router-link :to="'/create'">
-  Create
-</router-link>
+<ApartmentList>
+  
+</ApartmentList>
 </template>
 <style lang="scss" scoped>
 @use '../styles/general.scss' as *;
