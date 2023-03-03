@@ -25,7 +25,7 @@ class ApartmentFactory extends Factory
             'address' => fake() ->   address(), 
             'latitude' => fake() ->   latitude(-90, 90), 
             'longitude' => fake() ->   longitude(-180, 180), 
-            'main_image' => fake() ->  imageUrl(360, 360, 'animals', true, 'dogs', true), 
+            // 'main_image' => fake() ->  imageUrl(360, 360, 'animals', true, 'dogs', true), 
             'visible' => fake() ->   boolean(100), 
             'price' => fake() ->   numberBetween(10, 1500), 
             'description' => fake() ->  paragraph(3), 

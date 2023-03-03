@@ -21,7 +21,7 @@ return new class extends Migration
             $table->    string('address', 128);    
             $table->    string('latitude', 16);
             $table->    string('longitude', 16);
-            $table->    string('main_image');
+            $table->    string('main_image') ->default('no-img.jpg');
             $table->    boolean('visible') -> default(true);
             $table->    integer('price') -> unsigned() -> default(60);
             $table->    text('description') -> nullable();
