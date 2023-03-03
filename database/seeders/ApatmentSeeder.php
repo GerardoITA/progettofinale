@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Apartment;
+use App\Models\Sponsorship;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,9 @@ class ApatmentSeeder extends Seeder
             $user = User::inRandomOrder()-> first();
             $a -> user() -> associate($user);
             $a -> save();
+
+            $sponsorship = Sponsorship::inRandomOrder()-> limit(rand(2,4)) ->get();
+            
         });
     }
 }
