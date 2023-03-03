@@ -29,7 +29,7 @@ class ApartmentSeeder extends Seeder
             $apartment -> services()-> attach($service);
 
             // apartment-sponsorship
-            $sponsorship = Sponsorship::inRandomOrder() -> limit(rand(2,4)) ->get();
+            $sponsorship = Sponsorship::inRandomOrder() -> limit(rand(0,1)) ->get();
             $apartment -> sponsorships() -> attach($sponsorship, ['end_date' => new DateTime('tomorrow')]);
 
         });
