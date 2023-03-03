@@ -14,4 +14,7 @@ class Image extends Model
         'description',
         'image'
     ];
+    public function apartment(){
+        return $this -> belongsTo(Apartment::class);
+    }
 }
