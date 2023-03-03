@@ -10,7 +10,13 @@ class Service extends Model
     use HasFactory;
 
 
-    protected $fillable=[
+    protected $fillable = [
         'name',
     ];
+
+    //APARTMENTS many to many
+    public function apartments()
+    {
+        return $this->belongsToMany(Apartment::class);
+    }
 }
