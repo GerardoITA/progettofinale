@@ -47,6 +47,21 @@ class ApartmentController extends Controller
             'visible' => 'required|boolean',
             'price' => 'required|integer|min:0',
             'description' => 'string',
-        ])
+            'services_id' => 'nullable|array',
+        ]);
+
+        $service = Service :: find($data ['services_id']);
+
+        $apartment = Apartment :: make($data);
+
+        $apartment -> services() -> sync($service);
+
+        $apartment -> save();
+
+        return response() -> json([
+            'success' => true,
+            'response' => $apartment,
+            'data' => $request -> all()
+        ]);
     }
 }
