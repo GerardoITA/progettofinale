@@ -19,6 +19,38 @@ This is for creating things
     Home
   </router-link>
   <form method="POST">
+    <label for='title'>Nome dell'appartamento</label>
+    <label for='rooms'>Stanze</label>
+    <label for='beds'>Letti</label>
+    <label for='bathrooms'>Bagni</label>
+    <label for='square_meters'>Metratura</label>
+    <label for='address'>Indirizzo dell'appartamento</label>
+    <label for='main_image'></label>
+    <label for='visible'></label>
+    <label for='price'>Prezzo a notte</label>
+    <label for='description'>Breve descrizione dell'appartamento</label>
+    <label for='services_id'></label>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <label for="name">Name</label>
     <input v-model="store.newMovie.name" type="text" name="name">
         <br>
