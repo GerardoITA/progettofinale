@@ -17,9 +17,7 @@ class ApartmentController extends Controller
 
         return response()->json([
             "success" => true,
-            "response" => [
-                $apartments,
-            ]
+            "response" => $apartments,
         ]);
     }
 
@@ -71,6 +69,7 @@ class ApartmentController extends Controller
             ]
         ]);
     }
+
     //  store apartment
     public function store(request $request)
     {
