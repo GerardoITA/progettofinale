@@ -16,8 +16,8 @@ export default {
     mounted() {
        axios.get(store.AllApartmentsAPI)
          .then(res => {
-             store.ApartmentList = res.data.response.apartments;
- 
+            store.ApartmentList = res.data.response.data;
+            console.log(store.ApartmentList) 
          });
   }
 }
@@ -25,13 +25,12 @@ export default {
 
 <template>
 ApartmentList
-
   <div class="contenitore">
     <router-link class="routerLink" :to="'/apartments/' + apartment.id" v-for="apartment in store.ApartmentList" :key="apartment.id">
         <Apartment :nome="apartment.title" :id="apartment.id" :immagine="apartment.main_image">
         </Apartment>
     </router-link>
-  </div>
+  </div> 
 </template>
 
 <style lang="scss" scoped>

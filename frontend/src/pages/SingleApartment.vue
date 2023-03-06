@@ -12,16 +12,25 @@ export default {
         return {
             store,
             currentId: this.$route.params.id,
+            SingleApartmentAPI: `${store.AllApartmentsAPI}/1`,
         }
     },
-    mounted() {
-        axios.get(store.AllApartmentsAPI)
-            .then(res => {
-                store.ApartmentList = res.data.response.apartments;
-
-            }); // Rifare il get con un find invece che delegare al prop, più efficiente
+     methods: {
+         test() {
+             console.log(this.currentId);
+             console.log(this.SingleApartmentAPI);
+             console.log(store.Apartment)
+         }
+     },
+     mounted() {
+        
+         axios.get(this.SingleApartmentAPI)
+             .then(res => {
+                 store.Apartment = res.data.response.data;
+ 
+             }); 
+     }
     }
-}
 
 </script>
 
@@ -29,16 +38,16 @@ export default {
 
 <template>
 
-    <div class="contenitore">
+  <div class="contenitore">
         <Apartment
-        :nome="store.ApartmentList.find(e => e.id == currentId)?.title"
-        :id="store.ApartmentList.find(e => e.id == currentId)?.id"
-        :immagine="store.ApartmentList.find(e => e.id == currentId)?.main_image"
+        :nome="store.Apartment?.apartments?.title"
+        :id="store.Apartment?.apartments?.id"
+        :immagine="store.Apartment?.apartments?.id"
 
         >
             
         </Apartment>
-        
+        <button @click="test">Oogabooga</button>
     </div>
 </template>
 
