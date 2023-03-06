@@ -27,7 +27,7 @@ export default {
 ApartmentList
 
   <div class="contenitore">
-    <router-link class="routerLink" :to="'/create'" v-for="apartment in store.ApartmentList" :key="apartment.id">
+    <router-link class="routerLink" :to="'/apartments/' + apartment.id" v-for="apartment in store.ApartmentList" :key="apartment.id">
         <Apartment :nome="apartment.title" :id="apartment.id" :immagine="apartment.main_image">
         </Apartment>
     </router-link>
