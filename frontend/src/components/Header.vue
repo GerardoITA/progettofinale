@@ -12,6 +12,10 @@ export default {
                     name: 'Create',
                     route: '/create',
                 },
+                {
+                    name: 'Register',
+                    route: '/register',
+                },
             ]
         }
     }
