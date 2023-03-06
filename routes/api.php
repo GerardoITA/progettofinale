@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,8 @@ Route::get('/v1/apartments/{apartment}', [ApartmentController::class, 'show'])->
 Route::delete('/v1/apartments/{apartment}', [ApartmentController::class, 'destroy'])->name('apartments.destroy');
 Route::get('/v1/apartments/create', [ApartmentController::class, 'create'])->name('apartments.create');
 Route::post('/v1/apartments/store', [ApartmentController::class, 'store'])->name('apartments.store');
+
+
+// route image
+Route::get('/v1/apartments/image/{apartment_id}',[ImageController::class, 'showImages']) -> name('apartment.image');
+Route::delete('/v1/apartments/image/{image}',[ImageController::class, 'deleteImage']) -> name('image.delete');
