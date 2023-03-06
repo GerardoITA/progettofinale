@@ -3,6 +3,8 @@
 use App\Http\Controllers\ApartmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +26,10 @@ Route::get('/v1/apartments/{apartment}', [ApartmentController::class, 'show'])->
 Route::delete('/v1/apartments/{apartment}', [ApartmentController::class, 'destroy'])->name('apartments.destroy');
 Route::get('/v1/apartments/create', [ApartmentController::class, 'create'])->name('apartments.create');
 Route::post('/v1/apartments/store', [ApartmentController::class, 'store'])->name('apartments.store');
+
+Route::post('register', [RegisterController::class, 'register']);
+Route::post('login', [RegisterController::class, 'login']);
+      
+Route::middleware('auth:api')->group( function () {
+    Route::resource('products', ProductController::class);
+});
