@@ -40,7 +40,7 @@ class ApartmentController extends Controller
     }
 
     // delete apartment (and it will delete all relations)
-    public function delete(Apartment $apartment)
+    public function destroy(Apartment $apartment)
     {
         $apartment->user()->dissociate();
         $apartment->views()->delete();
