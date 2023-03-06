@@ -38,5 +38,20 @@ class ApartmentController extends Controller
         ]);
     }
 
+    public function delete(Apartment $apartment)
+    {
+        $apartment->user()->dissociate();
+        $apartment->views()->delete();
+        $apartment->messages()->delete();
+        $apartment->images()->delete();
+        $apartment->sponsorships()->sync([]);
+        $apartment->services()->sync([]);
+        $apartment->delete();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
     // public function edit(Apartment $apartment)
 }
