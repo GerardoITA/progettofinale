@@ -12,15 +12,10 @@ export default {
         return {
             store,
             currentId: this.$route.params.id,
-            SingleApartmentAPI: `${store.AllApartmentsAPI}/1`,
+            SingleApartmentAPI: `${store.AllApartmentsAPI}/${this.$route.params.id}`,
         }
     },
      methods: {
-         test() {
-             console.log(this.currentId);
-             console.log(this.SingleApartmentAPI);
-             console.log(store.Apartment)
-         }
      },
      mounted() {
         
@@ -47,7 +42,6 @@ export default {
         >
             
         </Apartment>
-        <button @click="test">Oogabooga</button>
     </div>
 </template>
 
