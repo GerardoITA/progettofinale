@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
+    // show all apartments with paginations (12 elementi alla volta)
     public function index()
     {
         $apartments = Apartment::paginate(12);
@@ -22,6 +23,7 @@ class ApartmentController extends Controller
         ]);
     }
 
+    // show single apartment by id with relations
     public function show(Apartment $apartment)
     {
         $apartment->load('user');
@@ -32,11 +34,14 @@ class ApartmentController extends Controller
         return response()->json([
             "success" => true,
             "response" => [
-                "data" => $apartment,
+                "data" => [
+                    "apartments" => $apartment
+                ],
             ]
         ]);
     }
 
+    // delete apartment (and it will delete all relations)
     public function delete(Apartment $apartment)
     {
         $apartment->user()->dissociate();
@@ -52,9 +57,24 @@ class ApartmentController extends Controller
         ]);
     }
 
-    // controller create appartamento 
-    public function store(request $request){
-        $data = $request -> validate([
+    // create apartment (for create form page)
+    public function create()
+    {
+        $services = Service::all();
+
+        return response()->json([
+            "success" => true,
+            "response" => [
+                "data" => [
+                    "services" => $services
+                ],
+            ]
+        ]);
+    }
+    //  store apartment
+    public function store(request $request)
+    {
+        $data = $request->validate([
             'title' => 'required|string|min:0|max:128',
             'rooms' => 'required|integer|min:0',
             'beds' => 'required|integer|min:0',
@@ -70,18 +90,18 @@ class ApartmentController extends Controller
             'services_id' => 'nullable|array',
         ]);
 
-        $service = Service :: find($data ['services_id']);
+        $service = Service::find($data['services_id']);
 
-        $apartment = Apartment :: make($data);
+        $apartment = Apartment::make($data);
 
-        $apartment -> services() -> sync($service);
+        $apartment->services()->sync($service);
 
-        $apartment -> save();
+        $apartment->save();
 
-        return response() -> json([
+        return response()->json([
             'success' => true,
             'response' => $apartment,
-            'data' => $request -> all()
+            'data' => $request->all()
         ]);
     }
 }
