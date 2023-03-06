@@ -31,4 +31,11 @@ class ApartmentController extends Controller
     //         ]
     //     ]);
     // }
+
+    // controller create appartamento 
+    public function store(request $request){
+        $data = $request -> validate([
+            
+        ])
+    }
 }
