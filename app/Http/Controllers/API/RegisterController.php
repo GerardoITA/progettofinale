@@ -28,12 +28,19 @@ class RegisterController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());       
         }
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['name'] =  $user->name;
-        return $this->sendResponse($success, 'User register successfully.');
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+
+        $user = User::create($data);
+
+        $token =  $user->createToken('MyApp')->accessToken;
+
+        return response()->json([
+            'success' => true,
+            'response' => $user,
+            'token' => $token,
+            'data' => $request->all()
+        ]);
     }
     
     /**
@@ -44,12 +51,18 @@ class RegisterController extends BaseController
     public function login(Request $request)
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+            
             $user = Auth::user();
             
-            $success['token'] =  $user->createToken('MyApp')->accessToken;
-            $success['name'] =  $user->name;
+            $token =  $user->createToken('MyApp')->accessToken;
+        
     
-            return $this->sendResponse($success, 'User login successfully.');
+            return response()->json([
+                'success' => true,
+                'response' => $user,
+                'token' => $token,
+                'data' => $request->all()
+            ]);
         } 
         else{ 
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
