@@ -37,6 +37,7 @@ Route::middleware('auth:api')->group(function () {
 //run php artisan route:list to see all routes
 Route::resource('/v1/apartments', ApartmentController::class)->except(['update']);
 Route::post('/v1/apartments/{apartment}', [ApartmentController::class, 'update'])->name('apartments.update');
+Route::post('/v1/movie/update/{apartment}', [ApartmentController::class, 'edit']);
 
 // scommentare nel caso non funzionasse Route::resourse() ^^^^^^^^^^
 // Route::get('/v1/apartments', [ApartmentController::class, 'index'])->name('apartments.index');
