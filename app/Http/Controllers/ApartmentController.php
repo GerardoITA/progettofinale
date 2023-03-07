@@ -6,6 +6,8 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ApartmentController extends Controller
 {
@@ -75,24 +77,29 @@ class ApartmentController extends Controller
     {
         $data = $request->all();
 
-        // $data = $request->validate([
-        //     'title' => 'required|string|min:0|max:128',
-        //     'rooms' => 'required|integer|min:0',
-        //     'beds' => 'required|integer|min:0',
-        //     'bathrooms' => 'required|integer|min:0',
-        //     'square_meters' => 'required|integer|min:0',
-        //     'address' => 'required|string|min:0|max:128',
-        //     'latitude' => 'required|string|min:0|max:16',
-        //     'longitude' => 'required|string|min:0|max:16',
-        //     'main_image' => 'required|string|min:0|max:128',
-        //     'visible' => 'required|boolean',
-        //     'price' => 'required|integer|min:0',
-        //     'description' => 'string',
-        //     'services_id' => 'nullable|array',
-        //     'user_id' => 'nullable|array',
-        // ]);
 
-        //scommentare quando si fanno i form
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|min:0|max:128',
+            'rooms' => 'required|integer|min:0',
+            'beds' => 'required|integer|min:0',
+            'bathrooms' => 'required|integer|min:0',
+            'square_meters' => 'required|integer|min:0',
+            'address' => 'required|string|min:0|max:128',
+            'latitude' => 'required|string|min:0|max:16',
+            'longitude' => 'required|string|min:0|max:16',
+            'main_image' => 'required|string|min:0|max:128',
+            'visible' => 'required|boolean',
+            'price' => 'required|integer|min:0',
+            'description' => 'string',
+            'services_id' => 'nullable|array',
+            'user_id' => 'required|integer', 
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());       
+        }
+
+        $data = $request->all();
 
         $apartment = Apartment::make($data);
 
