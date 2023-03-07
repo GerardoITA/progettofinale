@@ -1,27 +1,12 @@
-<script>
-import Header from './components/Header.vue';
+<script setup>
+import { RouterLink, RouterView } from 'vue-router';
+import Navbar from './components/Navbar.vue';
 
-export default {
-  name: "App",
-  components: {
-    Header
-  },
-  data() {
-    return {
-    }
-  },
-  methods: {
-
-  }
-}  
 </script>
 
-
 <template>
-  <Header></Header>
-  <router-view/>
+  <div>
+    <Navbar />
+  </div>
+  <RouterView />
 </template>
-
-<style lang="scss">
-@use './styles/general.scss' as *;
-</style>
