@@ -30,6 +30,7 @@ class ImageController extends Controller
 
     // STORE
     public function storeImage(Request $request){
+
         $data = $request -> validate([
             'title' => 'required|string|max:32',
             'description' => 'required|string',
@@ -37,13 +38,17 @@ class ImageController extends Controller
             'apartment_id' => 'required',
         ]);
 
+        // save image in the Storage
         $image_path= Storage::put('uploads', $data['image']);
         $image_path = $request->file('image')->store('image', 'public');
         $data['image']=$image_path;
         
+        // associate image to Apartment
         $apartment= Apartment::find($data[ 'apartment_id']);
         $image = Image::make($data);
         $image -> apartment() ->associate($apartment);
+
+        // save element
         $image  -> save();
         
 

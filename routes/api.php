@@ -54,7 +54,10 @@ Route::post('/v1/apartments/store', [ApartmentController::class, 'store'])->name
 
 
 // ROUTE IMAGE
+    // show
 Route::get('/v1/apartments/image/{apartment_id}',[ImageController::class, 'showImages']) -> name('apartment.image');
+    // delete
 Route::delete('/v1/apartments/image/{image}',[ImageController::class, 'deleteImage']) -> name('image.delete');
+    // store
 Route::post('/v1/apartments/image/store', [ImageController::class, 'storeImage'])-> name('image.store');
 ?>

@@ -23,6 +23,7 @@ export default {
         }
     },
     methods: {
+        // SHOW IMAGE
         imageData(idApartment) {
             axios.get(this.apiImage + idApartment)
                 .then(res => {
@@ -32,7 +33,9 @@ export default {
                     console.error(err);
                 })
         },
+        // DELETE IMAGE
         imgDelete(imageId) {
+
             axios.delete(this.apiImage + imageId)
                 .then(res => {
                     console.log(res);
@@ -42,46 +45,28 @@ export default {
                     console.error(err);
                 })
         },
-        storeImage(e) {
-            e.preventDefault();
-
-            let newImage = {
-                'title': this.titleImage,
-                'description': this.descriptionImage,
-                'image': this.image.name,
-                'apartment_id': this.id
-            };
-
-            console.log(newImage);
-
-            axios.post(this.apiImage + 'store', newImage)
-                .then(res => {
-                    const data = res.data;
-                    const success = res.success;
-
-                    if (success) {
-                        console.log(success);
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                })
-        }, onChange(e) {
+        // convert format image in file
+        onChange(e) {
             this.image = e.target.files[0];
-        }, storeData(e) {
+        },
+        // STORE IMAGE
+        storeData(e) {
             e.preventDefault();
             let currentObj = this;
 
+            // change config content
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
             }
 
+            // import file
             let formData = new FormData();
             formData.append('title', this.titleImage);
             formData.append('description', this.descriptionImage);
             formData.append('image', this.image);
             formData.append('apartment_id', this.id);
 
+            // send to axios
             axios.post(this.apiImage + 'store', formData, config)
                 .then(function (response) {
                     currentObj.success = response.data.success;
@@ -113,19 +98,28 @@ export default {
             
         </div>
         <div>
+            <!-- btn SHOW image -->
             <button  @click="imageData(id)">Images</button>
             <div v-for="image in images">
                 {{ image.id }} - 
+
+                <!-- btn DELETE -->
                <button @click="imgDelete(image.id)">Delete</button>
             </div>
         </div>
+
+
         <form method="post" enctype="multipart/form-data">
+
+            <!-- input title -->
             <label for="title">Image title</label>
             <input type="text" v-model="titleImage" name="title">
 
+            <!-- input description -->
             <label for="description">Image description</label>
             <input type="text" v-model="descriptionImage" name="description">
 
+            <!-- input image -->
             <label for="image">Image title</label>
             <input type="file" v-on="image" name="image" v-on:change="onChange">
 
