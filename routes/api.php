@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ApartmentController;
+<<<<<<< HEAD
 use App\Models\Apartment;
+=======
+>>>>>>> crudImage
 use App\Http\Controllers\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

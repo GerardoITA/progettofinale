@@ -98,6 +98,7 @@ export default {
             
         </div>
         <div>
+<<<<<<< HEAD
             <!-- btn SHOW image -->
             <button  @click="imageData(id)">Images</button>
             <div v-for="image in images">
@@ -120,6 +121,21 @@ export default {
             <input type="text" v-model="descriptionImage" name="description">
 
             <!-- input image -->
+=======
+            <button  @click="imageData(id)">Images</button>
+            <div v-for="image in images">
+                {{ image.id }} - 
+               <button @click="imgDelete(image.id)">Delete</button>
+            </div>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            <label for="title">Image title</label>
+            <input type="text" v-model="titleImage" name="title">
+
+            <label for="description">Image description</label>
+            <input type="text" v-model="descriptionImage" name="description">
+
+>>>>>>> crudImage
             <label for="image">Image title</label>
             <input type="file" v-on="image" name="image" v-on:change="onChange">
 
