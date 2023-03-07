@@ -34,14 +34,17 @@ class ImageController extends Controller
             'title' => 'required|string|max:32',
             'description' => 'required|string',
             'image' => 'required|image|mimes:jpg,png,gif,jpeg,svg|max:2048',
-            'apartment_id' => 'required|integer',
+            'apartment_id' => 'required',
         ]);
 
         $image_path= Storage::put('uploads', $data['image']);
         $image_path = $request->file('image')->store('image', 'public');
         $data['image']=$image_path;
-
-        $image = Image::make($data) -> save();
+        
+        $apartment= Apartment::find($data[ 'apartment_id']);
+        $image = Image::make($data);
+        $image -> apartment() ->associate($apartment);
+        $image  -> save();
         
 
         return response() ->json([

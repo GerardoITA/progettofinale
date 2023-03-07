@@ -48,7 +48,7 @@ export default {
             let newImage = {
                 'title': this.titleImage,
                 'description': this.descriptionImage,
-                'image': this.image,
+                'image': this.image.name,
                 'apartment_id': this.id
             };
 
@@ -68,7 +68,28 @@ export default {
                 })
         }, onChange(e) {
             this.image = e.target.files[0];
-        },
+        }, storeData(e) {
+            e.preventDefault();
+            let currentObj = this;
+
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+
+            let formData = new FormData();
+            formData.append('title', this.titleImage);
+            formData.append('description', this.descriptionImage);
+            formData.append('image', this.image);
+            formData.append('apartment_id', this.id);
+
+            axios.post(this.apiImage + 'store', formData, config)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                    currentObj.output = error;
+                });
+        }
 
 
     },
@@ -108,7 +129,7 @@ export default {
             <label for="image">Image title</label>
             <input type="file" v-on="image" name="image" v-on:change="onChange">
 
-            <input type="submit" value="ADD NEW IMAGE" @click="storeImage">
+            <input type="submit" value="ADD NEW IMAGE" @click="storeData">
         </form>
     </div>
 
