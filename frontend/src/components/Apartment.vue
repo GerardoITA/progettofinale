@@ -15,6 +15,11 @@ export default {
             store,
             apiImage: 'http://127.0.0.1:8000/api/v1/apartments/image/',
             images: [],
+
+            titleImage: '',
+            descriptionImage: '',
+            image: '',
+            idApartment: ''
         }
     },
     methods: {
@@ -24,7 +29,7 @@ export default {
                     this.images = res.data.images
                 })
                 .catch(err => {
-                    console.log(err);
+                    console.error(err);
                 })
         },
         imgDelete(imageId) {
@@ -34,9 +39,38 @@ export default {
                     this.imageData(this.id)
                 })
                 .catch(err => {
-                    console.log(err);
+                    console.error(err);
                 })
-        }
+        },
+        storeImage(e) {
+            e.preventDefault();
+
+            let newImage = {
+                'title': this.titleImage,
+                'description': this.descriptionImage,
+                'image': this.image,
+                'apartment_id': this.id
+            };
+
+            console.log(newImage);
+
+            axios.post(this.apiImage + 'store', newImage)
+                .then(res => {
+                    const data = res.data;
+                    const success = res.success;
+
+                    if (success) {
+                        console.log(success);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        }, onChange(e) {
+            this.image = e.target.files[0];
+        },
+
+
     },
     created() {
 
@@ -64,6 +98,18 @@ export default {
                <button @click="imgDelete(image.id)">Delete</button>
             </div>
         </div>
+        <form method="post" enctype="multipart/form-data">
+            <label for="title">Image title</label>
+            <input type="text" v-model="titleImage" name="title">
+
+            <label for="description">Image description</label>
+            <input type="text" v-model="descriptionImage" name="description">
+
+            <label for="image">Image title</label>
+            <input type="file" v-on="image" name="image" v-on:change="onChange">
+
+            <input type="submit" value="ADD NEW IMAGE" @click="storeImage">
+        </form>
     </div>
 
 </template>
