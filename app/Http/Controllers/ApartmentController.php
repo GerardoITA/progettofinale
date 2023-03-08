@@ -92,11 +92,11 @@ class ApartmentController extends Controller
             'price' => 'required|integer|min:0',
             'description' => 'string',
             'services_id' => 'nullable|array',
-            'user_id' => 'required|integer', 
+            'user_id' => 'required|integer',
         ]);
 
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
         }
 
         $data = $request->all();
@@ -106,12 +106,13 @@ class ApartmentController extends Controller
         // one to many
         $user = User::find($data['user_id']);
         $apartment->user()->associate($user);
+        $apartment->save();
 
         // many to many
-        $services = Service::find($data['services_id']);
-        $apartment->services()->attach($services);
-
-        $apartment->save();
+        if (array_key_exists('services_id', $data)) {
+            $services = Service::find($data['services_id']);
+            $apartment->services()->sync($services);
+        }
 
         return response()->json([
             'success' => true,
